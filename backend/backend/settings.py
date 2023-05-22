@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,9 +127,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_THROTTLE_CLASSES': ['rest_framework.throttling.UserRateThrottle'],
+    'DEFAULT_THROTTLE_RATES': {'user': '2/hour'},
 }
+
+WECHAT_APP_ID = os.getenv('WECHAT_APP_ID')
+WECHAT_APP_SECRET = os.getenv('WECHAT_APP_SECRET')
+
+OPENAI_API_TYPE = os.getenv('OPENAI_API_TYPE')
+OPENAI_API_BASE = os.getenv('OPENAI_API_BASE')
+OPENAI_API_VERSION = os.getenv('OPENAI_API_VERSION')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+OPENAI_ENGINE_ID = os.getenv('OPENAI_ENGINE_ID')
