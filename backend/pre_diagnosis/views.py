@@ -63,7 +63,7 @@ class PreDiagnosisAPIView(APIView):
     def post(self, request):
         res = ''
         question = request.query_params.get('question')
-        username = request.query_params.get('username')
+        openid = request.query_params.get('openid')
         try:
             response = openai.ChatCompletion.create(
                 engine=settings.OPENAI_ENGINE_ID,
@@ -93,7 +93,7 @@ class PreDiagnosisAPIView(APIView):
             print(e)
             res = '系统繁忙，请稍后再试~'
         finally:
-            user = CustomUser.objects.get(username=username)
+            user = CustomUser.objects.get(openid=openid)
             pre_diagnosis_record = PreDiagnosis(
                 user=user, question=question, answer=res
             )
