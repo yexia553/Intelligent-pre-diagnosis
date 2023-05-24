@@ -1,17 +1,16 @@
 from django.contrib import admin
-from .models import WechatUser, PreDiagnosis
+from .models import PreDiagnosis, CustomUser
 
 
-class WechatUserAdmin(admin.ModelAdmin):
-    list_display = ('user', 'openid')
-    search_fields = ('user__username',)
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'openid', 'is_active', 'is_staff')
+    search_fields = ('username', 'openid')
 
 
 class PreDiagnosisAdmin(admin.ModelAdmin):
     list_display = ('user', 'question', 'answer')
-    search_fields = ('user__user__username',)
-    raw_id_fields = ('user',)
+    search_fields = ('user__username', 'question', 'answer')
 
 
-admin.site.register(WechatUser, WechatUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(PreDiagnosis, PreDiagnosisAdmin)
