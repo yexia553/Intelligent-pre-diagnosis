@@ -73,6 +73,7 @@ class LoginAPIView(APIView):
 
 class PreDiagnosisAPIView(APIView):
     throttle_classes = [CustomHourlyThrottle]
+    throttle_scope = 'custom_hourly'
 
     def post(self, request):
         res = ''

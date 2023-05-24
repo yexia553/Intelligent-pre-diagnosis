@@ -137,12 +137,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle',
-        'pre_diagnosis.throttling.CustomHourlyThrottle',
-    ],
-    'DEFAULT_THROTTLE_RATES': {'anon': None, 'user': None, 'custom_hourly': '2/hour'},
+    # 'DEFAULT_THROTTLE_CLASSES': [
+    #     'pre_diagnosis.throttling.CustomHourlyThrottle',
+    # ],
+    'DEFAULT_THROTTLE_RATES': {'custom_hourly': '2/hour'},
 }
 
 WECHAT_APP_ID = os.getenv('WECHAT_APP_ID')
