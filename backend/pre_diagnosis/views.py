@@ -7,6 +7,7 @@ import openai
 import requests
 from .models import PreDiagnosis, CustomUser
 from .throttling import CustomHourlyThrottle
+import logging
 
 
 openai.api_type = settings.OPENAI_API_TYPE
@@ -25,6 +26,7 @@ class LoginAPIView(APIView):
         code = request.query_params.get('code')
         nick_name = request.query_params.get('nickName')
         if not code:
+            logging.info('没有获取到小程序code')
             return Response({"error": "Missing authorization code"}, status=400)
 
         # 获取 access_token 和 openid
@@ -33,14 +35,16 @@ class LoginAPIView(APIView):
         result = response.json()
 
         if 'errcode' in result:
+            logging.info('调用腾讯API认证小程序失败')
             return Response(result, status=400)
 
         openid = result['openid']
 
         try:
-            wechat_user = CustomUser.objects.get(openid=openid)
-            user = wechat_user.user
+            user = CustomUser.objects.get(openid=openid)
+            logging.info(f"{nick_name}: 该用户已经存在，从数据库获取信息")
         except CustomUser.DoesNotExist:
+            logging.info(f"{nick_name}: 该用户不存在，尝试创建新用户")
             random_password = generate_random_string(30)
             username_suffix = generate_random_string(5)
             user = CustomUser.objects.create_user(
@@ -48,6 +52,7 @@ class LoginAPIView(APIView):
                 openid=openid,
                 password=random_password,
             )
+            logging.info(f"{nick_name}: 创建新用户成功")
 
         data = {
             "user_openid": openid,
@@ -64,6 +69,7 @@ class PreDiagnosisAPIView(APIView):
         res = ''
         question = request.query_params.get('question')
         openid = request.query_params.get('openid')
+        logging.info("成功获取question和openid")
         try:
             response = openai.ChatCompletion.create(
                 engine=settings.OPENAI_ENGINE_ID,
@@ -98,5 +104,6 @@ class PreDiagnosisAPIView(APIView):
                 user=user, question=question, answer=res
             )
             pre_diagnosis_record.save()
+            logging.info("预诊记录保存成功")
 
         return Response({"res": res})
