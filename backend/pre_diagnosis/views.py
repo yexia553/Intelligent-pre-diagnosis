@@ -10,6 +10,12 @@ from .throttling import CustomHourlyThrottle
 import logging
 
 
+logging.basicConfig(
+    format="%(asctime)s %(levelname)-8s %(message)s",
+    level=logging.INFO,
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+
 openai.api_type = settings.OPENAI_API_TYPE
 openai.api_base = settings.OPENAI_API_BASE
 openai.api_version = settings.OPENAI_API_VERSION
@@ -40,12 +46,15 @@ class LoginAPIView(APIView):
 
         openid = result['openid']
 
+        random_password = generate_random_string(30)
         try:
             user = CustomUser.objects.get(openid=openid)
+            user.set_password(random_password)
+            user.save()
             logging.info(f"{nick_name}: 该用户已经存在，从数据库获取信息")
         except CustomUser.DoesNotExist:
             logging.info(f"{nick_name}: 该用户不存在，尝试创建新用户")
-            random_password = generate_random_string(30)
+
             username_suffix = generate_random_string(5)
             user = CustomUser.objects.create_user(
                 username=nick_name + username_suffix,
