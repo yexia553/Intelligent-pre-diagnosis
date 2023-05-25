@@ -114,7 +114,7 @@ class PreDiagnosisAPIView(APIView):
             print(e)
             res = '系统繁忙，请稍后再试~'
         finally:
-            user = CustomUser.objects.get(openid=openid)
+            user = CustomUser.objects.get(username=openid)
             pre_diagnosis_record = PreDiagnosis(
                 user=user, question=question, answer=res
             )
