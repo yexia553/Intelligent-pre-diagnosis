@@ -3,8 +3,8 @@ from .models import PreDiagnosis, CustomUser
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'openid', 'is_active', 'is_staff')
-    search_fields = ('username', 'openid')
+    list_display = ('username', 'nick_name', 'is_active', 'is_staff')
+    search_fields = ('username', 'nick_name')
 
 
 class PreDiagnosisAdmin(admin.ModelAdmin):
