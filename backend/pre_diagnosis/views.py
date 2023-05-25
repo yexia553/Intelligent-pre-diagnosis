@@ -49,9 +49,8 @@ class LoginAPIView(APIView):
 
         random_password = generate_random_string(30)
         try:
-            # user = CustomUser.objects.get(username=openid)
-            # user.set_password(random_password)
-            # user.save()
+            CustomUser.objects.get(username=openid)
+
             logging.info(f"{nick_name}: 该用户已经存在，从数据库获取信息")
             data = {
                 "username": openid,
