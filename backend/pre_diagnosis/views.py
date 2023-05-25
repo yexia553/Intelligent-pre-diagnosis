@@ -49,9 +49,9 @@ class LoginAPIView(APIView):
 
         random_password = generate_random_string(30)
         try:
-            user = CustomUser.objects.get(username=openid)
-            user.set_password(random_password)
-            user.save()
+            # user = CustomUser.objects.get(username=openid)
+            # user.set_password(random_password)
+            # user.save()
             logging.info(f"{nick_name}: 该用户已经存在，从数据库获取信息")
             data = {
                 "username": openid,
@@ -61,7 +61,7 @@ class LoginAPIView(APIView):
             return Response(data)
         except CustomUser.DoesNotExist:
             logging.info(f"{nick_name}: 该用户不存在，尝试创建新用户")
-            user = CustomUser.objects.create_user(
+            CustomUser.objects.create_user(
                 username=openid,
                 nick_name=nick_name,
                 password=random_password,
