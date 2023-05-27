@@ -1,0 +1,90 @@
+<!-- pages/contact/contact.wxml -->
+<!-- <button type="primary" bindtap="getUserProfile">getUserProfile</button> -->
+<view id="notive">
+  <van-notice-bar
+    fixed="{{true}}"
+    scrollable
+    left-icon="volume-o"
+    text="回复内容仅供参考，请悉知。具体请咨询医生，祝您早日康复！"
+    fixed="{{true}}"
+  />
+</view>
+
+<view style="margin-top:40px;position:absolute">
+  <van-dialog id="van-dialog" />
+  <scroll-view
+    scroll-y
+    scroll-into-view='{{toView}}'
+    style='height: {{scrollHeight}}'
+  >
+    <block
+      wx:key='index'
+      wx:for='{{msgList}}'
+      wx:for-index="index"
+    >
+      <!-- 单个消息1 客服发出（左） -->
+      <view
+        wx:if='{{item.speaker=="server"}}'
+        id='msg-{{index}}'
+        style='display: flex; padding: 2vw 11vw 2vw 2vw;'
+      >
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../images/yiyuan.png'></image>
+        </view>
+        <view style='width: 4vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+          <image
+            style='width: 4vw;'
+            src='../../images/ic_retangle_left.png'
+            mode='widthFix'
+          ></image>
+        </view>
+        <view class='leftMsg'>{{item.content}}</view>
+      </view>
+      <!-- 单个消息2 用户发出（右） -->
+      <view
+        wx:else
+        id='msg-{{index}}'
+        style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'
+      >
+        <view class='rightMsg'>{{item.content}}</view>
+        <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+          <image
+            style='width: 4vw;'
+            src='../../images/ic_retangle_right.png'
+            mode='widthFix'
+          ></image>
+        </view>
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{cusHeadIcon}}'></image>
+        </view>
+      </view>
+    </block>
+    <!-- </view> -->
+    <!-- 占位 -->
+    <view style='width: 100%; height: 18vw;'></view>
+  </scroll-view>
+  <view class='inputRoom' style='bottom: {{inputBottom}}'>
+    <input
+      bindconfirm='sendClick'
+      adjust-position='{{false}}'
+      value='{{inputVal}}'
+      confirm-type='send'
+      bindfocus='focus'
+      bindblur='blur'
+      bindinput="inputChange"
+      disabled="{{inputDisabled}}"
+      placeholder='{{inputPlaceHolder}}'
+    ></input>
+    <van-button
+      round
+      color="#96EB6A"
+      size="small"
+      class="sendBtn"
+      bindtap='sendMsg'
+      disabled="{{inputDisabled}}"
+    >
+      发送
+    </van-button>
+  </view>
+</view>
+

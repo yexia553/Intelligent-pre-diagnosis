@@ -1,0 +1,57 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": [],
+		"include": []
+	},
+	"setting": {
+		"bundle": false,
+		"userConfirmedBundleSwitch": false,
+		"urlCheck": true,
+		"scopeDataCheck": false,
+		"coverView": true,
+		"es6": true,
+		"postcss": true,
+		"compileHotReLoad": false,
+		"lazyloadPlaceholderEnable": false,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"autoAudits": false,
+		"newFeature": false,
+		"uglifyFileName": true,
+		"uploadWithSourceMap": true,
+		"useIsolateContext": true,
+		"nodeModules": false,
+		"enhance": true,
+		"useMultiFrameRuntime": true,
+		"useApiHook": true,
+		"useApiHostProcess": true,
+		"showShadowRootInWxmlPanel": true,
+		"packNpmManually": false,
+		"enableEngineNative": false,
+		"packNpmRelationList": [
+			{
+				"packageJsonPath": "./package.json",
+				"miniprogramNpmDistDir": "./miniprogram_npm/"
+			}
+		],
+		"minifyWXSS": true,
+		"showES6CompileOption": false,
+		"minifyWXML": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"condition": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.19.6",
+	"appid": "wx509e89efed31596a",
+	"projectname": "miniprogram-92",
+	"condition": {},
+	"editorSetting": {
+		"tabIndent": "tab",
+		"tabSize": 2
+	}
+}

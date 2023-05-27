@@ -1,0 +1,30 @@
+<van-toast id="van-toast" />
+<view class="container">
+  <view class="logo-container">
+    <image
+      class="logo"
+      src="../../images/yiyuan.png"
+      mode="aspectFit"
+    ></image>
+  </view>
+  <view class="input-container">
+    昵称
+    <text style="color:red;">   * </text>
+    <input
+      type="nickname"
+      class="weui-input"
+      placeholder="请输入昵称"
+      bind:change="onInputChange"
+      adjust-position="{{true}}"
+    />
+  </view>
+  <view class="button-container">
+    <van-button
+      type="primary"
+      bindtap="onLogin"
+      size="large"
+    >登录
+    </van-button>
+  </view>
+</view>
+

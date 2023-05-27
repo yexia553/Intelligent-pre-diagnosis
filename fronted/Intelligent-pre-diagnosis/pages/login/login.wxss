@@ -1,0 +1,46 @@
+app{
+    background-color: #f8f8f8;  
+}
+.container {  
+    display: flex;  
+    flex-direction: column;  
+    align-items: center;  
+    justify-content: center;  
+    height: 100%;  
+    padding: 30rpx;  
+  }  
+    
+  .logo-container {  
+    margin-bottom: 60rpx;  
+  }  
+    
+  .logo {  
+    width: 200rpx;  
+    height: 200rpx;  
+  }  
+    
+  .input-container {  
+    width: 100%;  
+    margin-bottom: 40rpx;  
+    display: flex;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: 100rpx;
+    align-items: center;
+  }  
+  .input-container input {
+    margin-left: 100rpx;
+  }
+  .input-label {  
+    font-size: 32rpx;  
+  }  
+    
+  .nickname-input {  
+    font-size: 28rpx;  
+  }  
+    
+  .button-container {  
+    width: 100%;  
+    margin-top: 3%;
+  }  
+  
