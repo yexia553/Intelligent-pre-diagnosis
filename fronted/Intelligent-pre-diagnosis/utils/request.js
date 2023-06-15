@@ -6,7 +6,7 @@ import { promisifyAll } from 'miniprogram-api-promise'
 const wxp = wx.api = {}
 promisifyAll(wx, wxp)
 
-const API_BASE_URL = 'https://panzhixiang.cn/pre-diag/api/';
+const API_BASE_URL = 'https://XXXXXX.cn/pre-diag/api/';
 
 // 封装通用的 request 函数  
 function request(url, method, data, header) {
