@@ -8,7 +8,7 @@ const api = {
   wx_login: (code, nickName) => {
     let login_data = {
       'content-type': 'application/json',
-      "Authorization": "Basic YWRtaW5fY3JlYXRlc3VwZXJ1c2VyOjUhejZMY045ZiZUM25yNnhYcUoyI31oY3Q="
+      "Authorization": "Basic XXXXXXX"
     };
     return request(`login/?code=${code}&nickName=${nickName}`, 'POST', {},login_data);
   },
